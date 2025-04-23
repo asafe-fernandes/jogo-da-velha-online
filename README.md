@@ -1,3 +1,3 @@
 # jogo-da-velha-online
 
-pasta? então ta certo, blz kkkk
+Jogo da velha bobinho que fizemos para aprender sockets.
