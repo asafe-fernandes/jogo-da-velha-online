@@ -19,8 +19,8 @@ public class Server {
 
         Socket playerO = serverSocket.accept();
         System.out.println("player O connected.");
-        PrintWriter playerOout = new PrintWriter(playerX.getOutputStream(), true);
-        BufferedReader playerOin = new BufferedReader(new InputStreamReader(playerX.getInputStream()));
+        PrintWriter playerOout = new PrintWriter(playerO.getOutputStream(), true);
+        BufferedReader playerOin = new BufferedReader(new InputStreamReader(playerO.getInputStream()));
 
         playerXout.println("You are player X.");
         playerOout.println("You are player O.");
@@ -29,8 +29,9 @@ public class Server {
             PrintWriter currentOut = game.getCurrentPlayer() == 'X' ? playerXout : playerOout;
             BufferedReader currentIn = game.getCurrentPlayer() == 'X' ? playerXin : playerOin;
 
-            currentOut.println(game.showBoard());
-            System.out.println("Make your move(rows cols): ");
+            playerXout.println(game.showBoard());
+            playerOout.println(game.showBoard());
+            currentOut.println("Make your move(rows cols): ");
 
             String input = currentIn.readLine();
             if (input == null)
@@ -65,5 +66,6 @@ public class Server {
                 break;
             }
         }
+        serverSocket.close();
     }
 }
